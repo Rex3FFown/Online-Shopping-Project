@@ -43,3 +43,6 @@ CREATE TABLE ma_order_items
     product_id int NOT NULL,
     FOREIGN KEY (product_id) REFERENCES ma_products (id)
 );
+
+ALTER TABLE ma_customers
+    ADD COLUMN e_mail varchar(100);
