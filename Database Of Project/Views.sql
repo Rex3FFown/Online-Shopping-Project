@@ -28,3 +28,10 @@ SELECT ma_products.name   AS product_name,
        ma_categories.name AS categories_name
 FROM ma_products
          JOIN ma_categories ON ma_products.category_id = ma_categories.id;
+
+CREATE VIEW ma_gunluk_satis AS 
+SELECT CAST(o.date AS DATE) AS order_date, SUM(oi.price * oi.count) AS total_sales
+FROM ma_orders o
+JOIN ma_order_items oi ON o.id = oi.order_id
+WHERE CAST(o.date AS DATE) = '2024-08-01'
+GROUP BY CAST(o.date AS DATE);
