@@ -68,3 +68,61 @@ FROM (
      ) AS subquery
 WHERE rn = 1;
 
+
+-- Products in Category
+SELECT p.* 
+FROM ma_products p
+JOIN ma_categories c ON p.category_id = c.id
+WHERE c.name = 'Kategori Adı';
+
+-- Low Stock Products
+SELECT name, stock 
+FROM ma_products
+WHERE stock < 10;
+
+-- Most Expensive Products
+SELECT name, price 
+FROM ma_products
+ORDER BY price DESC
+LIMIT 10;
+
+-- Customer Orders
+SELECT o.* 
+FROM ma_orders o
+JOIN ma_customers c ON o.customer_id = c.id
+WHERE c.name = 'Müşteri Adı' AND c.surname = 'Müşteri Soyadı';
+
+-- Order Details
+SELECT oi.*, p.name AS product_name
+FROM ma_order_items oi
+JOIN ma_products p ON oi.product_id = p.id
+WHERE oi.order_id = 2;
+
+-- Daily Orders
+SELECT CAST(date AS DATE) AS order_date, COUNT(*) AS order_count
+FROM ma_orders
+GROUP BY CAST(date AS DATE)
+ORDER BY order_date DESC;
+
+-- Daily Sales
+SELECT CAST(o.date AS DATE) AS order_date, SUM(oi.price * oi.count) AS total_sales
+FROM ma_orders o
+JOIN ma_order_items oi ON o.id = oi.order_id
+WHERE CAST(o.date AS DATE) = '2024-08-01'
+GROUP BY CAST(o.date AS DATE);
+
+-- Best Sellers
+SELECT p.name, SUM(oi.count) AS total_sold
+FROM ma_order_items oi
+JOIN ma_products p ON oi.product_id = p.id
+GROUP BY p.name
+ORDER BY total_sold DESC
+LIMIT 10;
+
+-- Average Order Amount
+SELECT c.name, c.surname, AVG(oi.price * oi.count) AS avg_order_value
+FROM ma_customers c
+JOIN ma_orders o ON c.id = o.customer_id
+JOIN ma_order_items oi ON o.id = oi.order_id
+GROUP BY c.name, c.surname
+ORDER BY avg_order_value DESC;
