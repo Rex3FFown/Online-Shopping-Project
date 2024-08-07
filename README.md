@@ -1,5 +1,5 @@
 <div align = "center">The project during my internship at Edict Digital. This repository contains the steps to create a simple online shopping system.</div>
-
+<br></br>
 <div align = "center">Projenin güncel varlık ilişkileri şeması. / Current entity relations diagram of the project.</div>
 <br></br>
 
