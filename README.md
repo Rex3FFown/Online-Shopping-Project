@@ -3,7 +3,7 @@
 
 
 <div align = "center"><p><b><h2>Current entity relations diagram of the project.</h2></b></p></div>
-<div align = "center"><p><b><h2>Projenin güncel varlık ilişkileri şeması.</h2></b></p></div>
+<div align = "center"><p><b>Projenin güncel varlık ilişkileri şeması.</b></p></div>
 <br></br>
 <br></br>
 
