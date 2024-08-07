@@ -1,4 +1,6 @@
 <div align = "center"><strong>The project during my internship at Edict Digital. This repository contains the steps to create a simple online shopping system.</strong></div>
+<div align = "center"><strong>Edict Digital'deki stajım sırasında gerçekleştirdiğim projem. Bu repo, basit bir çevrimiçi alışveriş sistemi oluşturma adımlarını içerir.</strong></div>
+
 <br></br>
 <div align = "center"><p><b>Current entity relations diagram of the project. / Projenin güncel varlık ilişkileri şeması.</b></p></div>
 <br></br>
