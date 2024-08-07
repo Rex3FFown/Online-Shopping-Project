@@ -2,7 +2,7 @@
 <div align = "center"><strong>Edict Digital'deki stajım sırasında gerçekleştirdiğim projem. Bu repo, basit bir çevrimiçi alışveriş sistemi oluşturma adımlarını içerir.</strong></div>
 <br>
 <div align = "center"><p><b>Current entity relations diagram of the project.</b></p></div>
-<div align = "center"><p><b>Projenin güncel varlık ilişkileri şeması.</b></p></div>
+<div align = "center"><b>Projenin güncel varlık ilişkileri şeması.</b></div>
 
 <br>
 
