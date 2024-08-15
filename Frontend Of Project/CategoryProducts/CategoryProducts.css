@@ -1,0 +1,112 @@
+/* CategoryProducts.css */
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Minimum genişliği artırdım */
+    gap: 25px; /* Ürünler arasında daha fazla boşluk */
+    padding: 40px; /* Grid çevresinde daha geniş iç boşluk */
+    background-color: #f8f9fa; /* Grid arka planı için açık gri */
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #e0e0e0; /* Daha açık bir border rengi */
+    border-radius: 10px; /* Daha yumuşak köşeler */
+    overflow: hidden;
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hafif bir kutu gölgesi */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Gölgeli geçiş efekti */
+}
+
+.product-card:hover {
+    transform: translateY(-10px); /* Kart yukarı kaldırılır */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Daha belirgin bir gölge */
+}
+
+.product-card img {
+    width: 100%; 
+    height: 220px; /* Sabit yükseklik biraz artırıldı */
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+    transition: transform 1s ease;
+}
+
+.product-card img:hover {
+    transform: scale(1.1); /* Görseli %10 büyütme */
+}
+.product-card img:active{
+    transform: scale(0.7);
+    height: 100%;
+    transform-origin: center;
+    
+}
+.product-card h3 {
+    font-size: 1.4rem; /* Daha büyük font boyutu */
+    margin: 15px 0;
+    color: #333; /* Daha koyu yazı rengi */
+    font-weight: 600; /* Daha ağır font */
+}
+
+.product-card .price {
+    font-size: 1.2rem; /* Fiyat için daha büyük font boyutu */
+    color: #e74c3c; /* Vurucu kırmızı bir renk */
+    margin: 15px 0;
+    font-weight: 700; /* Fiyatın vurgulanması */
+}
+
+.product-card p {
+    margin: 15px 0;
+    color: #666; /* Açıklama metni için daha yumuşak bir renk */
+    font-size: 0.95rem; /* Küçük bir font boyutu */
+}
+
+.product-card button {
+    background-color: #28a745; /* Dikkat çekici yeşil buton */
+    color: #fff;
+    border: none;
+    padding: 12px 25px; /* Daha geniş buton */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600; /* Daha ağır buton yazısı */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Yumuşak geçişler */
+}
+
+.product-card button:hover {
+    background-color: #218838; /* Daha koyu yeşil buton */
+    transform: translateY(-2px); /* Hover'da buton yukarı kayar */
+}
+
+.sort-controls {
+    display: flex;
+    justify-content: flex-end; /* Sağda hizalanır */
+    align-items: center;
+    margin: 20px 0;
+}
+
+.sort-controls label {
+    margin-right: 15px; 
+    font-size: 1.1rem;
+    color: #333; /* Daha koyu yazı rengi */
+    font-weight: 500;
+}
+
+.sort-controls select {
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #fff;
+    color: #333;
+    transition: border-color 0.3s ease; /* Yumuşak geçiş */
+}
+
+.sort-controls select:hover {
+    border-color: #999; /* Hover'da daha koyu border rengi */
+}
