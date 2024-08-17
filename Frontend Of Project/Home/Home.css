@@ -1,0 +1,16 @@
+/* Home.css */
+.containerStyle {
+    display: flex;
+    flex-direction: column; /* Dikey yönde hizalama */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 20px; /* Gerekiyorsa iç boşluk ekleyin */
+}
+
+.titleStyle {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px; /* Başlık ve ürünler arasında boşluk */
+}
