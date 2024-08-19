@@ -1,0 +1,132 @@
+/* Navbar.css */
+
+.navbar {
+    background-color: #222; /* Daha koyu arka plan */
+    padding: 10px 20px; /* Daha geniş padding */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
+}
+
+.navbar-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Vertikal merkezleme */
+}
+
+.navbar-item {
+    margin: 0 20px; /* Daha geniş aralık */
+    position: relative; /* Dropdown menüsünün konumlanması için */
+}
+
+.navbar-link {
+    color: #f5f5f5; /* Daha açık renkli yazı */
+    text-decoration: none;
+    font-size: 16px; /* Biraz daha küçük font boyutu */
+    font-weight: 500; /* Daha hafif font ağırlığı */
+    transition: color 0.3s ease, border-bottom 0.3s ease; /* Yumuşak geçişler */
+    padding: 10px; /* İçerik etrafında boşluk */
+}
+
+.navbar-link:hover {
+    color: #f39c12; /* Hover rengi */
+    border-bottom: 2px solid #f39c12; /* Hover altında ince bir çizgi */
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    color: #333;
+   
+    border: 1px solid #ddd;
+    border-radius: 6px; /* Daha yumuşak köşeler */
+    width: 220px; /* Genişlik ayarı */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Daha belirgin gölge */
+    z-index: 1000;
+    opacity: 0; /* Başlangıçta görünmez */
+    visibility: hidden; /* Başlangıçta görünmez */
+    transform: translateY(10px); /* Menü aşağıdan kaydırılmış */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease; /* Yumuşak geçiş */
+}
+
+.dropdown:hover .dropdown-menu {
+   
+    opacity: 1; /* Menü görünür */
+    visibility: visible; /* Menü görünür */
+    transform: translateY(1); /* Menü yukarı kaydırılır */
+}
+
+.dropdown-item {
+    padding: 12px 20px; /* Daha geniş padding */
+    border-bottom: 1px solid #464646;
+    transition: background-color 0.3s ease; /* Yumuşak geçiş */
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-link {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.dropdown-link:hover {
+    background-color: #fdecd1;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    
+ 
+}
+
+.custom-icon-button-basket{
+    background-color: #282424;
+    color: #f39d12 ;
+    width: 30px;
+    height: 30px;
+    border: none;   
+    border-radius: 100px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.custom-icon-button-basket:hover{
+    color: rgb(255, 255, 255) ;
+    background-color: #f39d1270 ;
+
+}
+
+/* Navbar.css */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
