@@ -1,0 +1,64 @@
+/* Grid Düzeni */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Eşit aralıklarla düzenlenen sütunlar */
+    gap: 20px; /* Ürünler arasında boşluk */
+    padding: 20px; /* Grid çevresinde iç boşluk */
+}
+
+/* Ürün Kartı */
+.product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* İçeriği merkezde hizalamak için */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+    padding: 10px;
+    text-align: center;
+    max-width: 100%; /* Kart genişliği */
+}
+
+/* Ürün Görseli */
+.product-card img {
+    width: 100%; /* Kartın genişliğine uyum sağlar */
+    height: 200px; /* Sabit bir yükseklik belirler */
+    object-fit: cover; /* Görselin kapsayıcıyı doldurmasını ve orantılı şekilde kesilmesini sağlar */
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+/* Ürün Başlığı */
+.product-card h3 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+/* Ürün Fiyatı */
+.product-card .price {
+    font-size: 1rem;
+    color: #f60 !important;
+    margin: 10px 0;
+}
+
+/* Ürün Açıklaması */
+.product-card p {
+    margin: 10px 0;
+}
+
+/* Sepete Ekle Butonu */
+.product-card button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* Buton Hover Efekti */
+.product-card button:hover {
+    background-color: #0056b3;
+}
