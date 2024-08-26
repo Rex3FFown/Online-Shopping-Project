@@ -2,6 +2,7 @@ package com.local.onlineshoppingproject.Entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 
 import java.util.Set;
 
@@ -18,11 +19,17 @@ public class Customer {
 
     private String surname;
 
-    private String adress;
+    private String address;
 
-    private String eMail;
+    private String email;
 
     private String password;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    public enum Role {
+        USER, ADMIN
+    }
 
     @OneToMany(mappedBy = "customer")
     private Set<Order> orders;

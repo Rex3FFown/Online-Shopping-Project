@@ -1,9 +1,11 @@
 package com.local.onlineshoppingproject.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,7 +24,8 @@ public class Order {
     private Customer customer;
 
     @OneToMany(mappedBy = "order")
-    private Set<OrderItem> orderItems;
+
+    private List<OrderItem> orderItems;
 
 
 }

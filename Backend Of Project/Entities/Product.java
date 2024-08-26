@@ -22,9 +22,9 @@ public class Product {
 
     private Integer stock;
 
-    @Lob
+@Column(length = 10000)
     private String description;
-
+    @Column(length = 1000)
     private String imageUrl;
 
     @ManyToOne
