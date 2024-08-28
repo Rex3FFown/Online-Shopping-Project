@@ -1,98 +1,109 @@
 /* CategoryProducts.css */
 
+
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Minimum genişliği artırdım */
-    gap: 25px; /* Ürünler arasında daha fazla boşluk */
-    padding: 40px; /* Grid çevresinde daha geniş iç boşluk */
-    background-color: #f8f9fa; /* Grid arka planı için açık gri */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px; 
+    padding: 40px; 
+    background-color: #f8f9fa;
 }
 
 .product-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid #e0e0e0; /* Daha açık bir border rengi */
-    border-radius: 10px; /* Daha yumuşak köşeler */
+    border: 1px solid #e0e0e0; 
+    border-radius: 1px; 
     overflow: hidden;
-    background-color: #fff;
+    background-color: #ffffff8f;
     padding: 20px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hafif bir kutu gölgesi */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Gölgeli geçiş efekti */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+   backdrop-filter: blur(10px);
+  
 }
 
 .product-card:hover {
-    transform: translateY(-10px); /* Kart yukarı kaldırılır */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Daha belirgin bir gölge */
+    transform: translateY(-10px); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.662);
 }
 
 .product-card img {
-    width: 100%; 
-    height: 220px; /* Sabit yükseklik biraz artırıldı */
+    width:fit-content(100%); 
+    height: 220px;
     object-fit: cover;
     border-bottom: 1px solid #ddd;
     margin-bottom: 15px;
     transition: transform 1s ease;
+    
+    
 }
 
 .product-card img:hover {
-    transform: scale(1.1); /* Görseli %10 büyütme */
+    transform: scale(1.1); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.096);
 }
-.product-card img:active{
-    transform: scale(0.7);
-    height: 100%;
+.product-card img:active {
+    transform: scale(0.9);
     transform-origin: center;
-    
+    height: 100%;
 }
+
 .product-card h3 {
-    font-size: 1.4rem; /* Daha büyük font boyutu */
-    margin: 15px 0;
-    color: #333; /* Daha koyu yazı rengi */
-    font-weight: 600; /* Daha ağır font */
+    font-size: 1.4rem; 
+    margin: 1px ;
+    color: #333; 
+    font-weight: 600; 
+   
 }
 
 .product-card .price {
-    font-size: 1.2rem; /* Fiyat için daha büyük font boyutu */
-    color: #e74c3c; /* Vurucu kırmızı bir renk */
-    margin: 15px 0;
-    font-weight: 700; /* Fiyatın vurgulanması */
+    font-size: 1.2rem;
+    color: #e74c3c; 
+    margin: 1px 0;
+    font-weight: 700; 
+    
 }
 
 .product-card p {
-    margin: 15px 0;
-    color: #666; /* Açıklama metni için daha yumuşak bir renk */
-    font-size: 0.95rem; /* Küçük bir font boyutu */
+    margin: 1px 0;
+    color: #666; 
+    font-size: 0.95rem; 
 }
 
 .product-card button {
-    background-color: #28a745; /* Dikkat çekici yeşil buton */
+   margin:10px;
+    background-color: #28a745; 
     color: #fff;
     border: none;
-    padding: 12px 25px; /* Daha geniş buton */
+    padding: 12px 25px; 
     border-radius: 5px;
     cursor: pointer;
     font-size: 1.1rem;
-    font-weight: 600; /* Daha ağır buton yazısı */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Yumuşak geçişler */
+    font-weight: 600; 
+    transition: background-color 0.3s ease, transform 0.3s ease; 
 }
 
 .product-card button:hover {
-    background-color: #218838; /* Daha koyu yeşil buton */
-    transform: translateY(-2px); /* Hover'da buton yukarı kayar */
+    background-color: #218838;
+    transform: translateY(-2px); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.255);
 }
 
 .sort-controls {
     display: flex;
-    justify-content: flex-end; /* Sağda hizalanır */
+    justify-content: flex-end; 
     align-items: center;
-    margin: 20px 0;
+    margin: 10px 0;
+    margin-right: 2.4rem;
 }
 
 .sort-controls label {
     margin-right: 15px; 
     font-size: 1.1rem;
-    color: #333; /* Daha koyu yazı rengi */
+    color: #333; 
     font-weight: 500;
 }
 
@@ -104,9 +115,9 @@
     cursor: pointer;
     background-color: #fff;
     color: #333;
-    transition: border-color 0.3s ease; /* Yumuşak geçiş */
+    transition: border-color 0.3s ease;
 }
 
 .sort-controls select:hover {
-    border-color: #999; /* Hover'da daha koyu border rengi */
+    border-color: #999; 
 }

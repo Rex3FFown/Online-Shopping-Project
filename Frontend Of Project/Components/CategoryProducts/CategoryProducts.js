@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import './CategoryProducts.css';
 
 function CategoryProducts() {
-    console.log('mahmut');
+   
     const { id } = useParams(); // URL'den kategorinin ID'sini alıyoruz
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -56,7 +56,7 @@ function CategoryProducts() {
             <div className="sort-controls">
                 <label htmlFor="sortOrder">Fiyata göre sırala </label>
                 <select id="sortOrder" value={sortOrder} onChange={handleSortChange}>
-                    <option value="none"></option>
+                    <option value="none">-Filtreleme-</option>
                     <option value="asc">Artan</option>
                     <option value="desc">Azalan</option>
                 </select>

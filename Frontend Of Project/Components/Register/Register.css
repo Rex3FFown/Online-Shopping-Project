@@ -1,0 +1,38 @@
+.myButton{
+	box-shadow:inset 0px 1px 3px 0px #91b8b3 !important;
+	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%)!important;
+	background-color:#768d87 !important;
+	border-radius:5px!important;
+	border:1px solid #566963 !important;
+	display:inline-block !important;
+	cursor:pointer !important ;
+	color:#ffffff !important ;
+	font-family:Arial !important;
+	font-size:15px !important;
+	font-weight:bold !important;
+	padding:11px 23px !important;
+	text-decoration:none !important;
+	text-shadow:0px -1px 0px #2b665e !important;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%) !important;
+	background-color:#6c7c7c !important;
+}
+.myButton:active {
+	position:relative!important;
+	top:1px !important;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.success-message {
+    color: green;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+        
