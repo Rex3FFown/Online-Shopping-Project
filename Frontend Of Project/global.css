@@ -1,0 +1,19 @@
+/* global.css */
+
+@keyframes gradientShift {
+    0% {
+      background: linear-gradient(0deg, #ffffff 0%, #b2cfd4 100%);
+    }
+    50% {
+      background: linear-gradient(180deg, #ffffff 0%, #b2cfd4 100%);
+    }
+    100% {
+      background: linear-gradient(360deg, #ffffff 0%, #00d9ff 100%);
+    }
+  }
+
+body {
+ animation: gradientShift 10s infinite; /* 10 saniyede bir döner */
+  background: linear-gradient(0deg, #ffffff 0%, #b2cfd4 100%);
+  background-size: 200% 200%;
+} 
