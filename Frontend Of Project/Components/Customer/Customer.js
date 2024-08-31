@@ -8,16 +8,23 @@ function Customer() {
     const [customerList, setCustomerList] = useState([]);
     const [filteredCustomerList, setFilteredCustomerList] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [modalMode, setModalMode] = useState(null); // "add" or "update"
-    const [customerForm, setCustomerForm] = useState({ name: '', surname: '', email: '', password: '', adress: '' });
+    const [modalMode, setModalMode] = useState(null); 
+    const [customerForm, setCustomerForm] = useState({ name: '', surname: '', email: '', password: '', address: '' });
     const [selectedCustomerId, setSelectedCustomerId] = useState(null);
     const [visibleDropdowns, setVisibleDropdowns] = useState(new Set());
-    const [customerOrders, setCustomerOrders] = useState({}); // Her müşteri için siparişleri saklamak için
-    const [orderModalVisible, setOrderModalVisible] = useState(false); // Siparişler modalinin görünürlüğü
+    const [customerOrders, setCustomerOrders] = useState({});
+    const [orderModalVisible, setOrderModalVisible] = useState(false);
+    const [userRole, setUserRole] = useState(null);
 
     useEffect(() => {
-        getAllCustomers();
-    }, []);
+  
+        setUserRole(localStorage.getItem('role'));
+
+
+        if (userRole === 'ADMIN') {
+            getAllCustomers();
+        }
+    }, [userRole]);
 
     useEffect(() => {
         filterCustomers();
@@ -25,12 +32,21 @@ function Customer() {
 
     const getAllCustomers = async () => {
         try {
-            const res = await fetch("http://localhost:8080/customers", { method: "GET", credentials: 'include' });
+            const res = await fetch("http://localhost:8080/customers", {
+                method: "GET",
+                credentials: 'include',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": localStorage.getItem("token")
+                }
+            });
+            
             if (!res.ok) {
                 console.error("Alınamadı");
                 return;
             }
             const result = await res.json();
+            console.log(localStorage.getItem("token"));
             setIsLoaded(true);
             setCustomerList(result);
         } catch (error) {
@@ -48,7 +64,7 @@ function Customer() {
                 customer.name.toLowerCase().includes(lowercasedSearchTerm) ||
                 customer.surname.toLowerCase().includes(lowercasedSearchTerm) ||
                 customer.email.toLowerCase().includes(lowercasedSearchTerm) ||
-                customer.adress.toLowerCase().includes(lowercasedSearchTerm)
+                customer.address.toLowerCase().includes(lowercasedSearchTerm)
             );
             setFilteredCustomerList(filteredList);
         }
@@ -56,7 +72,14 @@ function Customer() {
 
     const deleteCustomer = async (customerId) => {
         try {
-            const response = await fetch(`http://localhost:8080/customers/${customerId}`, { method: "DELETE", credentials: 'include' });
+            const response = await fetch(`http://localhost:8080/customers/${customerId}`, {
+                method: "DELETE",
+                credentials: 'include',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": localStorage.getItem("token")
+                }
+            });
             if (!response.ok) {
                 console.error("Silinemedi");
                 return;
@@ -70,12 +93,14 @@ function Customer() {
     const saveCustomer = async () => {
         const url = modalMode === "add" ? "http://localhost:8080/customers" : `http://localhost:8080/customers/${selectedCustomerId}`;
         const method = modalMode === "add" ? "POST" : "PUT";
+    
 
         try {
             const response = await fetch(url, {
                 method: method,
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": localStorage.getItem("token")
                 },
                 credentials: 'include',
                 body: JSON.stringify(customerForm)
@@ -103,13 +128,13 @@ function Customer() {
 
     const openAddModal = () => {
         setModalMode("add");
-        setCustomerForm({ name: '', surname: '', email: '', password: '', adress: '' });
+        setCustomerForm({ name: '', surname: '', email: '', password: '', address: '' });
     };
 
     const openUpdateModal = (customer) => {
         setModalMode("update");
         setSelectedCustomerId(customer.id);
-        setCustomerForm({ name: customer.name, surname: customer.surname, email: customer.email, password: customer.password, adress: customer.adress });
+        setCustomerForm({ name: customer.name, surname: customer.surname, email: customer.email, password: customer.password, address: customer.address });
     };
 
     const closeModal = () => {
@@ -118,7 +143,14 @@ function Customer() {
 
     const fetchCustomerOrders = async (customerId) => {
         try {
-            const res = await fetch(`http://localhost:8080/orders/${customerId}`, { method: "GET", credentials: 'include' });
+            const res = await fetch(`http://localhost:8080/orders/${customerId}`, {
+                method: "GET",
+                credentials: 'include',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": localStorage.getItem("token")
+                }
+            });
             if (!res.ok) {
                 console.error("Siparişler alınamadı");
                 return;
@@ -154,6 +186,11 @@ function Customer() {
         setSelectedCustomerId(null);
     };
 
+   
+    if (userRole !== 'ADMIN') {
+        return <div>Bu sayfayı görüntüleme izniniz yok.</div>;
+    }
+
     return (
         <div className="table-container">
             <div className="header-container">
@@ -188,7 +225,7 @@ function Customer() {
                             <td>{customer.name}</td>
                             <td>{customer.surname}</td>
                             <td>{customer.email}</td>
-                            <td>{customer.adress}</td>
+                            <td>{customer.address}</td>
                             <td>
                                 <button className="custom-icon-button" onClick={() => deleteCustomer(customer.id)}>
                                     <Trash size={25} />
@@ -227,7 +264,7 @@ function Customer() {
                             </label>
                             <label>
                                 Adres:
-                                <input type="text" name="adress" value={customerForm.adress} onChange={handleInputChange} required />
+                                <input type="text" name="address" value={customerForm.address} onChange={handleInputChange} required />
                             </label>
                             <label>
                                 Şifre:

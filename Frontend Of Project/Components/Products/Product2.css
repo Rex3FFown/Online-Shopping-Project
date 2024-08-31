@@ -4,21 +4,26 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Eşit aralıklarla düzenlenen sütunlar */
     gap: 20px; /* Ürünler arasında boşluk */
     padding: 20px; /* Grid çevresinde iç boşluk */
+    
 }
 
 /* Ürün Kartı */
-.product-card {
+.product-card{
     display: flex;
     flex-direction: column;
-    align-items: center; /* İçeriği merkezde hizalamak için */
+    align-items: center; 
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
     background-color: #fff;
     padding: 10px;
     text-align: center;
-    max-width: 100%; /* Kart genişliği */
+    max-width: 100%; 
+
+    
+    
 }
+
 
 /* Ürün Görseli */
 .product-card img {
@@ -62,3 +67,32 @@
 .product-card button:hover {
     background-color: #0056b3;
 }
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    
+  }
+  
+  .search__input {
+   
+    font-family: inherit;
+    font-size: inherit;
+    background-color: #f4f2f2;
+    border: none;
+    color: #646464;
+    padding: 0.7rem 1rem;
+    border-radius: 30px;
+    width: 12em;
+    transition: all ease-in-out .5s;
+    margin-right: -2rem;
+    margin-top:-85%;    
+    
+  }
+  
+#special-page .header-container {
+    position: absolute;
+  }
+
+  
