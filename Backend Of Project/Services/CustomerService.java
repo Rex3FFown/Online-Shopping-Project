@@ -1,6 +1,7 @@
 package com.local.onlineshoppingproject.Services;
 
 import com.local.onlineshoppingproject.Entities.Customer;
+import com.local.onlineshoppingproject.Exceptions.EmailAlreadyExistsException;
 import com.local.onlineshoppingproject.Repositories.CustomerRepo;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,10 @@ public class CustomerService {
     }
 
     public Customer addNewUser(Customer customer) {
+        if (customerRepo.existsByEmail(customer.getEmail())) {
+            throw new EmailAlreadyExistsException("Bu emaile sahip bir kullanıcı mevcut.");
+        }
+
         return customerRepo.save(customer);
     }
 
@@ -33,7 +38,7 @@ public class CustomerService {
     public Customer updateThatCustomer(int customerId, Customer newCustomer) {
         Optional<Customer> customer = customerRepo.findById(customerId);
         if (customer.isPresent()) {
-            // Eğer kullanıcı varsa, bilgilerini güncelliyoruz.
+
             Customer foundCustomer = customer.get();
             foundCustomer.setName(newCustomer.getName());
             foundCustomer.setSurname(newCustomer.getSurname());
@@ -63,8 +68,7 @@ public class CustomerService {
         Optional<Customer> customer = customerRepo.findByEmail(email);
         return customer.orElse(null);
     }
-    public String getRol(int customerId) {
-        return customerRepo.findRoleById(customerId);
-    }
+
 
 }
+

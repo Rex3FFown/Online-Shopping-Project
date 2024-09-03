@@ -11,11 +11,17 @@ public class AuthResponse {
     Integer userId;
     String accessToken;
     String refreshToken;
-private CustomerService customerService;
-    public AuthResponse(String accessToken, Integer userId, String refreshToken,String role) {
+    String userName;
+    String userEmail;
+    String userSurname;
+
+    public AuthResponse(String accessToken, Integer userId, String refreshToken, String role,String userName, String userEmail, String userSurname) {
         this.accessToken = accessToken;
         this.userId = userId;
         this.refreshToken = refreshToken;
-        this.role = role ;
+        this.role = role;
+        this.userName = userName;
+        this.userEmail = userEmail;
+        this.userSurname = userSurname;
     }
 }

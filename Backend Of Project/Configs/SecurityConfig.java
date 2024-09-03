@@ -4,6 +4,7 @@ import com.local.onlineshoppingproject.Security.JwsAuthenticationFilter;
 import com.local.onlineshoppingproject.Security.JwtAuthenticationEntryPoint;
 import com.local.onlineshoppingproject.Services.UserDetailsServiceImpl;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,25 +27,16 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 
-
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
 
     private final UserDetailsServiceImpl userDetailsService;
     private final JwtAuthenticationEntryPoint handler;
-
-    public SecurityConfig(UserDetailsServiceImpl userDetailsService, JwtAuthenticationEntryPoint handler) {
-        this.userDetailsService = userDetailsService;
-        this.handler = handler;
-    }
+    private final JwsAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
-    public JwsAuthenticationFilter jwtAuthenticationFilter() {
-        return new JwsAuthenticationFilter();
-    }
-@Bean
-
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
@@ -80,18 +72,19 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers(HttpMethod.GET, "/products").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/orders").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/category").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/products/{}").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/customers").hasAuthority("ROLE_ADMIN")  // ROLE_ADMIN
-                                .requestMatchers(HttpMethod.POST, "/customers").permitAll()
+                                //.requestMatchers(HttpMethod.GET, "/customers").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/products").permitAll()
                                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                                .requestMatchers("/auth/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/baskets/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/customers/register").permitAll()
                                 .anyRequest().authenticated()
                 );
 
-        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 }

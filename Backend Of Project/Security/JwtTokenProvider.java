@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Component
 public class JwtTokenProvider {
 
-    // Secret key artık bir String yerine SecretKey olarak tanımlanacak
+
     private final SecretKey APP_SECRET_KEY;
 
     @Value("${onlineshopping.expires.in}")
@@ -32,7 +32,7 @@ public class JwtTokenProvider {
         Date expireDate = new Date(new Date().getTime() + EXPIRES_IN);
 
         return Jwts.builder()
-                .setSubject(Long.toString(userDetails.getId()))
+                .setSubject(userDetails.getUsername())
                 .claim("role", userDetails.getAuthorities().stream()
                         .map(GrantedAuthority::getAuthority)
                         .collect(Collectors.joining(",")))
@@ -42,13 +42,13 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    public Integer getUserIdFromToken(String token) {
+    public String getUserIdFromToken(String token) {
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(APP_SECRET_KEY)
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
-        return Integer.parseInt(claims.getSubject());
+        return claims.getSubject();
     }
 
     public String getRoleFromToken(String token) {

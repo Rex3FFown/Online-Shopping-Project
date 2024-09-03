@@ -1,11 +1,15 @@
 package com.local.onlineshoppingproject.Controllers;
 
 import com.local.onlineshoppingproject.Entities.Customer;
+import com.local.onlineshoppingproject.Entities.Role;
+import com.local.onlineshoppingproject.Requests.AuthRequest;
 import com.local.onlineshoppingproject.Requests.CustomerRequest;
 import com.local.onlineshoppingproject.Responses.AuthResponse;
 import com.local.onlineshoppingproject.Security.JwtTokenProvider;
 import com.local.onlineshoppingproject.Services.CustomerService;
 import com.local.onlineshoppingproject.Services.RefreshTokenService;
+import com.local.onlineshoppingproject.Services.RoleService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
@@ -22,6 +26,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Set;
+
 
 @RestController
 @RequestMapping("/auth")
@@ -30,34 +36,37 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider jwtTokenProvider;
     private final CustomerService userService;
-    private final PasswordEncoder passwordEncoder;  // Bu değişken, genellikle kullanıcı oluşturma esnasında kullanılır.
+    private final PasswordEncoder passwordEncoder;
     private final RefreshTokenService refreshTokenService;
     private final CustomerService customerService;
+    private final RoleService roleService;
 
     @Autowired
     public AuthController(AuthenticationManager authenticationManager, CustomerService userService,
-                          PasswordEncoder passwordEncoder, JwtTokenProvider jwtTokenProvider, RefreshTokenService refreshTokenService, CustomerService customerService) {
+                          PasswordEncoder passwordEncoder, JwtTokenProvider jwtTokenProvider, RefreshTokenService refreshTokenService, CustomerService customerService, RoleService roleService) {
         this.authenticationManager = authenticationManager;
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
         this.jwtTokenProvider = jwtTokenProvider;
         this.refreshTokenService = refreshTokenService;
         this.customerService = customerService;
+        this.roleService = roleService;
     }
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody CustomerRequest loginRequest) {
         try {
-            // Kullanıcı email ve şifresine dayalı bir authentication token oluştur
+
             UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                     loginRequest.getEmail(),
-                    loginRequest.getPassword() // AuthenticationManager burada passwordEncoder'ı kullanarak şifreyi doğrular
+                    loginRequest.getPassword()
             );
 
             Authentication auth = authenticationManager.authenticate(authToken);
             SecurityContextHolder.getContext().setAuthentication(auth);
 
             String jwtToken = jwtTokenProvider.generateJwtToken(auth);
+
 
             Customer customer = userService.getCustomerByMail(loginRequest.getEmail());
             if (customer == null) {
@@ -69,38 +78,50 @@ public class AuthController {
 
 
             Integer userId = customer.getId();
-            String role = customerService.getRol(userId);
-            AuthResponse authResponse = new AuthResponse("Bearer " + jwtToken, userId, refreshToken, role);
+            String userEmail = customer.getEmail();
+            String userName=customer.getName();
+            String userSurname = customer.getSurname();
+            String role = jwtTokenProvider.getRoleFromToken(jwtToken);
+            AuthResponse authResponse = new AuthResponse("Bearer " + jwtToken, userId, refreshToken, role,userName,userEmail,userSurname);
 
-            // Yanıtı döndür
+
             return ResponseEntity.ok(authResponse);
 
         } catch (BadCredentialsException e) {
-            // Şifre veya kullanıcı adı yanlışsa özel bir yanıt döndür
+
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(new AuthResponse("Invalid email or password", null, null, null));
+                    .body(new AuthResponse("Invalid email or password", null, null, null,null,null,null));
         } catch (Exception e) {
-            // Diğer hataları yakala
+
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new AuthResponse("An error occurred: " + e.getMessage(), null, null, null));
+                    .body(new AuthResponse("An error occurred: " + e.getMessage(), null, null, null,null,null,null));
         }
     }
 
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletRequest request) {
+        SecurityContextHolder.clearContext();
+        return ResponseEntity.ok("User logged out successfully");
+    }
+   /* @PostMapping("/login")
+    public ResponseEntity<AuthResponse> login(@Valid @RequestBody AuthRequest loginRequest) {
+        return ResponseEntity.ok().body(authService.login(loginRequest));
+    } */
     @ExceptionHandler(UsernameNotFoundException.class)
     public ResponseEntity<AuthResponse> handleUsernameNotFound(UsernameNotFoundException e) {
-        AuthResponse errorResponse = new AuthResponse(e.getMessage(), null, null, null);
+        AuthResponse errorResponse = new AuthResponse(e.getMessage(), null, null, null,null,null,null);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<AuthResponse> handleBadCredentials(BadCredentialsException e) {
-        AuthResponse errorResponse = new AuthResponse("Invalid email or password", null, null, null);
+        AuthResponse errorResponse = new AuthResponse("Invalid email or password", null, null, null,null,null,null);
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<AuthResponse> handleGeneralException(Exception e) {
-        AuthResponse errorResponse = new AuthResponse("An error occurred: " + e.getMessage(), null, null, null);
+        AuthResponse errorResponse = new AuthResponse("An error occurred: " + e.getMessage(), null, null, null,null,null,null);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
 }

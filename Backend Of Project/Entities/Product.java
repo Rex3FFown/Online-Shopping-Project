@@ -3,7 +3,9 @@ package com.local.onlineshoppingproject.Entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import com.local.onlineshoppingproject.Entities.BasketItem;
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity
 @Data
@@ -31,4 +33,6 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @OneToMany(mappedBy = "product")
+    private Set<BasketItem> basketItems;
 }
