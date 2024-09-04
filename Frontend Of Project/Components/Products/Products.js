@@ -19,6 +19,7 @@ const addToBasket = async (productId) => {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${localStorage.getItem("token")}`
       },
+      mode:"no-cors",
       credentials: 'include'
     });
 

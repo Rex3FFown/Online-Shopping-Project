@@ -2,11 +2,11 @@
 
 .navbar {
     background-color: #222;
-    /* Daha koyu arka plan */
+    
     padding: 10px 20px;
-    /* Daha geniş padding */
+
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Hafif gölge efekti */
+   
 }
 
 .navbar-list {
@@ -24,6 +24,7 @@
   
 }
 
+
 .navbar-link {
     color: #f5f5f5;
 
@@ -35,6 +36,7 @@
     transition: color 0.3s ease, border-bottom 0.3s ease;
 
     padding: 10px;
+    
 
 }
 

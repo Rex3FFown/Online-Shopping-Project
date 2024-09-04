@@ -63,7 +63,7 @@ function Navbar() {
         <div className="navbar">
             <ul className="navbar-list">
                 
-                {!isAdmin && (<li className="navbar-item"><Link className="navbar-link" to="/">Home</Link></li>)}
+                {!isAdmin && (<li className="navbar-item"><Link className="navbar-link" to="/">Anasayfa</Link></li>)}
                 
 
                 {isAdmin && (
@@ -92,7 +92,7 @@ function Navbar() {
                 </li>)}
                
                 {isLoggedIn && (
-                    <li className="navbar-item dropdown" style={{ marginLeft: 680 }}>
+                    <li className="navbar-item dropdown" style={{ marginLeft: 680 , position:'relative'}}>
                         <span className="navbar-link">Profil</span>
                         <ul className="dropdown-menu">
                             <li className="dropdown-item">

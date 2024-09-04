@@ -17,9 +17,7 @@ function Customer() {
     const [userRole, setUserRole] = useState(null);
 
     useEffect(() => {
-  
         setUserRole(localStorage.getItem('role'));
-
 
         if (userRole === 'ADMIN') {
             getAllCustomers();
@@ -46,7 +44,6 @@ function Customer() {
                 return;
             }
             const result = await res.json();
-            console.log(localStorage.getItem("token"));
             setIsLoaded(true);
             setCustomerList(result);
         } catch (error) {
@@ -93,7 +90,6 @@ function Customer() {
     const saveCustomer = async () => {
         const url = modalMode === "add" ? "http://localhost:8080/customers" : `http://localhost:8080/customers/${selectedCustomerId}`;
         const method = modalMode === "add" ? "POST" : "PUT";
-    
 
         try {
             const response = await fetch(url, {
@@ -186,7 +182,6 @@ function Customer() {
         setSelectedCustomerId(null);
     };
 
-   
     if (userRole !== 'ADMIN') {
         return <div>Bu sayfayı görüntüleme izniniz yok.</div>;
     }
@@ -285,20 +280,32 @@ function Customer() {
                         <h2>Siparişler</h2>
                         <ul>
                             {customerOrders[selectedCustomerId]?.map((order) => (
-                                <li key={order.id}>
+                                <li key={order.id} className="order-summary">
                                     <strong>Sipariş ID:</strong> {order.id} <br />
                                     <strong>Tarih:</strong> {order.date} <br />
-                                    <strong>Ürünler:</strong> <br />
-                                    <ul>
-                                        {order.orderItems.map(item => (
-                                            <li key={item.id}>
-                                                {item.product.imageUrl && (
-                                                    <img src={item.product.imageUrl} alt={item.product.name} className="product-image" />
-                                                )}
-                                                {item.product.name} - {item.count} x {item.price}
-                                            </li>
-                                        ))}
-                                    </ul>
+                                    <button 
+                                        className="order-details-button" 
+                                        onClick={() => handleDropdownClick(order.id)}
+                                    >
+                                        {visibleDropdowns.has(order.id) ? 'Gizle' : 'Göster'}
+                                    </button>
+                                    {visibleDropdowns.has(order.id) && (
+                                        <div className="order-details">
+                                            <strong>Ürünler:</strong> <br />
+                                            <ul>
+                                                {order.orderItems.map(item => (
+                                                    <li key={item.id} className="product-item">
+                                                        {item.product.imageUrl && (
+                                                            <img src={item.product.imageUrl} alt={item.product.name} className="product-image" />
+                                                        )}
+                                                        <div className="product-info">
+                                                            {item.product.name} - {item.count} x {item.price}
+                                                        </div>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
                                 </li>
                             )) || <li>Yükleniyor...</li>}
                         </ul>

@@ -1,36 +1,87 @@
-
-
 .profile-container {
-    
-    background-color: white;
+    background-color: #f4f4f4;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
-    text-align: center;
- 
-    margin:auto;
-    
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 90%;
+    margin: 20px auto;
+    text-align: left;
+    background: white;
+    border: 1px solid #ddd;
 }
 
 .profile-container h1 {
-    font-size: 24px;
+    font-size: 28px;
     margin-bottom: 20px;
     color: #333;
+    font-weight: 600;
 }
+
 .profile-container p {
-    font-size: 18px;
+    font-size: 16px;
     margin: 10px 0;
-    color: #555;
+    color: #666;
 }
 
 .profile-container p.email {
-    font-weight: bold;
+    font-weight: 500;
     color: #2c3e50;
 }
 
 .profile-container p.username {
-    font-size: 20px;
+    font-size: 18px;
     color: #34495e;
+}
+
+.order-summary {
+    cursor: pointer;
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    transition: background-color 0.3s;
+}
+
+.order-summary:hover {
+    background-color: #ddd;
+}
+
+.order-details {
+    padding: 10px;
+    border-left: 2px solid #3498db;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.product-image {
+    max-width: 100px;
+    height: auto;
+    border-radius: 4px;
+    margin-right: 10px;
+    vertical-align: middle; /* Resimlerin dikey hizalanmasını sağlar */
+}
+
+.product-item {
+    display: flex;
+    align-items: center; /* Resimleri ve metinleri ortalar */
+    margin-bottom: 10px; /* Liste elemanları arasına boşluk */
+}
+
+.product-info {
+    flex: 1; /* Ürün bilgisi alanını genişletir */
+    padding-left: 10px; /* Resim ile metin arasına boşluk */
+}
+
+.product-image + .product-info {
+    text-align: left; /* Ürün bilgilerini sola hizalar */
+}
+
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 10px;
 }

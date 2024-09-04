@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import '../Basket/Basket.css';
 
 const API_URL = 'http://localhost:8080/api/baskets';
 
 const getBasketByCustomerId = async (customerId) => {
  
-  const response = await fetch(`${API_URL}/customer/${customerId}`,{ headers: {
+  const response = await fetch(`${API_URL}/customer/${customerId}`,{  
+    method: "GET", 
+    credentials: 'include',
+    //mode: 'no-cors',
+    headers: {
     "Content-Type": "application/json",
     "Authorization": localStorage.getItem("token")
 }});
+const dataa = await response.json();
+console.log(dataa);
   if (!response.ok) throw new Error('Error fetching basket');
-  return response.json();
+  return dataa;
 };
 
 const BasketItem = ({ item, onRemove }) => (
@@ -31,8 +38,10 @@ const Basket = () => {
       try {
         const data = await getBasketByCustomerId(customerId);
         setBasket(data);
-
-        
+        if(basket==undefined){
+          setBasket(null);
+        }
+       
         localStorage.setItem("basketId", data.id);
       } catch (error) {
         console.error('Error fetching basket:', error);
@@ -69,7 +78,15 @@ const Basket = () => {
   };
 
   if (error) return <div>Error: {error}</div>;
-  if (!basket) return <div>Loading...</div>;
+  if (!basket) return  <div style={{ textAlign: 'center' }}>
+  
+  <img
+  className='loading'
+    src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif"
+    alt="Yükleniyor..."
+  />
+  <h1>Sepetiniz Boş</h1>
+</div>
 
   return (
     <div>
