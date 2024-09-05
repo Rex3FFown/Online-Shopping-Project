@@ -11,11 +11,12 @@ function CustomerProfile() {
             id: localStorage.getItem('userId'),
             username: localStorage.getItem('userName'),
             surname: localStorage.getItem('userSurname'),
-            email: localStorage.getItem('userEmail')
+            email: localStorage.getItem('userEmail'),
+            adres: localStorage.getItem('userAddress')
         };
 
         setProfile(profileData);
-        fetchCustomerOrders(profileData.id); // Profil yüklendiğinde siparişleri çek
+        fetchCustomerOrders(profileData.id); 
     }, []);
 
     const fetchCustomerOrders = async (customerId) => {
@@ -52,6 +53,8 @@ function CustomerProfile() {
             <h1>Profil</h1>
             <p className="username">Ad Soyad: {profile.username} {profile.surname}</p>
             <p className="email">Email: {profile.email}</p>
+            <p className="email">Adres: {profile.adres}</p>
+            {console.log(profile.email)}
             <ul>
                 {customerOrder[profile.id]?.length ? (
                     customerOrder[profile.id].map((order) => (

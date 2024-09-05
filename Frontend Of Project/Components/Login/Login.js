@@ -31,6 +31,7 @@ function Login({ closeModal, onLoginSuccess }) {
                     localStorage.setItem('userName',data.userName);
                     localStorage.setItem('userSurname',data.userSurname);
                     localStorage.setItem('userEmail',data.userEmail);
+                    localStorage.setItem('userAddress',data.userAddress);
 
                     if (onLoginSuccess) onLoginSuccess();
 
