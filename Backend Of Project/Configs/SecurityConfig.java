@@ -80,6 +80,7 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.POST, "/products").permitAll()
                                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/api/baskets/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/api/baskets/**").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/customers/register").permitAll()
                                 .anyRequest().authenticated()
                 );

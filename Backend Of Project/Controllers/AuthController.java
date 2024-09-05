@@ -81,8 +81,10 @@ public class AuthController {
             String userEmail = customer.getEmail();
             String userName=customer.getName();
             String userSurname = customer.getSurname();
+            String userAddress = customer.getAddress();
             String role = jwtTokenProvider.getRoleFromToken(jwtToken);
-            AuthResponse authResponse = new AuthResponse("Bearer " + jwtToken, userId, refreshToken, role,userName,userEmail,userSurname);
+
+            AuthResponse authResponse = new AuthResponse("Bearer " + jwtToken, userId, refreshToken, role,userName,userEmail,userSurname,userAddress);
 
 
             return ResponseEntity.ok(authResponse);
@@ -90,11 +92,11 @@ public class AuthController {
         } catch (BadCredentialsException e) {
 
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(new AuthResponse("Invalid email or password", null, null, null,null,null,null));
+                    .body(new AuthResponse("Invalid email or password", null, null, null,null,null,null,null));
         } catch (Exception e) {
 
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new AuthResponse("An error occurred: " + e.getMessage(), null, null, null,null,null,null));
+                    .body(new AuthResponse("An error occurred: " + e.getMessage(), null, null, null,null,null,null,null));
         }
     }
 
@@ -109,19 +111,19 @@ public class AuthController {
     } */
     @ExceptionHandler(UsernameNotFoundException.class)
     public ResponseEntity<AuthResponse> handleUsernameNotFound(UsernameNotFoundException e) {
-        AuthResponse errorResponse = new AuthResponse(e.getMessage(), null, null, null,null,null,null);
+        AuthResponse errorResponse = new AuthResponse(e.getMessage(), null, null, null,null,null,null,null);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<AuthResponse> handleBadCredentials(BadCredentialsException e) {
-        AuthResponse errorResponse = new AuthResponse("Invalid email or password", null, null, null,null,null,null);
+        AuthResponse errorResponse = new AuthResponse("Invalid email or password", null, null, null,null,null,null,null);
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<AuthResponse> handleGeneralException(Exception e) {
-        AuthResponse errorResponse = new AuthResponse("An error occurred: " + e.getMessage(), null, null, null,null,null,null);
+        AuthResponse errorResponse = new AuthResponse("An error occurred: " + e.getMessage(), null, null, null,null,null,null,null);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
 }

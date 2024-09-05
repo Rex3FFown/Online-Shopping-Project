@@ -14,8 +14,9 @@ public class AuthResponse {
     String userName;
     String userEmail;
     String userSurname;
+    String userAddress;
 
-    public AuthResponse(String accessToken, Integer userId, String refreshToken, String role,String userName, String userEmail, String userSurname) {
+    public AuthResponse(String accessToken, Integer userId, String refreshToken, String role,String userName, String userEmail, String userSurname, String userAddress) {
         this.accessToken = accessToken;
         this.userId = userId;
         this.refreshToken = refreshToken;
@@ -23,5 +24,6 @@ public class AuthResponse {
         this.userName = userName;
         this.userEmail = userEmail;
         this.userSurname = userSurname;
+        this.userAddress = userAddress;
     }
 }
