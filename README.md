@@ -3,9 +3,7 @@ The project during my internship at Edict Digital. __This repository contains th
 
 Edict Digital'deki stajım sırasında gerçekleştirdiğim proje. __Bu repo basit bir çevrimiçi alışveriş sistemi oluşturmak için gerekli adımları içerir.__
 
-<p align="center" style="font-weight: bold; font-size: 24px;">Tools/languages/technologies used</p>
-<h2 align="center">Kullanılan araçlar/diller/teknolojiler</h2>
- 
+<h2 align="center">Tools/languages/technologies used <br>Kullanılan araçlar/diller/teknolojiler</h2>
 
 
 <div align = center >
