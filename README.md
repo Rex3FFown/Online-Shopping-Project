@@ -6,7 +6,7 @@ Edict Digital'deki stajım sırasında gerçekleştirdiğim proje. __Bu repo bas
 <h2 align="center">Tools/languages/technologies used | Kullanılan araçlar/diller/teknolojiler </h2>
 
 
-<div style="text-align: center;">
+<p align ="center;">
   <table>
     <tr>
       <td><img src="https://logos-world.net/wp-content/uploads/2022/07/Java-Logo.png" alt="Java" width="150" /></td>
@@ -27,7 +27,7 @@ Edict Digital'deki stajım sırasında gerçekleştirdiğim proje. __Bu repo bas
       <td><img src="https://lh5.googleusercontent.com/proxy/BZ8fS3lc2jzu68mlgZCfh6gXuX6riB0jkEyHRYEwEuDNWPHTYapF9cZb0sNxKdwsAJGULih04DU4thHVg8O69m_mop9FuEjlLC8x85tR" alt="Kubernetes" width="150" /></td>
     </tr>
   </table>
-</div>
+</p>
 
 
 <h2 align="center">ER Diagram Of Project / Projenin ER Diagramı</h2>
