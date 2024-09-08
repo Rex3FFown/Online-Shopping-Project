@@ -1,4 +1,5 @@
-<h1>ER Diagram Of Project / Projenin ER Diagramı</h1>
+<h1 align="center">ER Diagram Of Project / Projenin ER Diagramı</h1>
 
-
-![ER Diagram](ER_Fiagram_Of_Project.svg)
+<p align="center">
+  <img src="ER_Fiagram_Of_Project.svg" alt="ER Diagram">
+</p>
