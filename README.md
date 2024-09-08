@@ -3,5 +3,5 @@ The project during my internship at Edict Digital. __This repository contains th
 <h1 align="center">ER Diagram Of Project / Projenin ER Diagramı</h1>
 
 
-  <img src="ER_Fiagram_Of_Project.svg" alt="ER Diagram">
+![ER Diagram](ER_Fiagram_Of_Project.svg)
 
