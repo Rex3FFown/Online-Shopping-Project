@@ -1,7 +1,7 @@
 package com.local.onlineshoppingproject.Services;
 
-import com.local.onlineshoppingproject.Entities.OrderItem;
-import com.local.onlineshoppingproject.Repositories.OrderItemRepo;
+import com.local.onlineshoppingproject.Entities.*;
+import com.local.onlineshoppingproject.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +13,14 @@ public class OrderItemService {
 
     @Autowired
     private OrderItemRepo orderItemRepository;
+    @Autowired
+    private BasketItemRepo basketItemRepo;
+    @Autowired
+    private OrderRepo orderRepo;
+    @Autowired
+    private ProductRepo productRepo;
+    @Autowired
+    private BasketRepo basketRepo;
 
     public List<OrderItem> getAllOrderItems() {
         return orderItemRepository.findAll();
@@ -26,9 +34,11 @@ public class OrderItemService {
         return orderItemRepository.save(orderItem);
     }
 
+
+
     public void deleteOrderItem(Integer id) {
         orderItemRepository.deleteById(id);
     }
 
-    // Ek işlevler ekleyebilirsiniz
+
 }

@@ -53,11 +53,13 @@ public class ProductService {
     }
 
 
-    public Optional<Product> getProductById(Integer id) {
-        return productRepo.findById(id);
+    public Product getProduct(Integer id) {
+        return productRepo.getProductById(id);
     }
     public void deleteThatProduct() {
         productRepo.deleteById(productRepo.findAll().get(0).getId());
     }
+
+
 
 }

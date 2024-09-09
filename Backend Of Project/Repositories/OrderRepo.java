@@ -10,4 +10,5 @@ import java.util.Optional;
 @Repository
 public interface OrderRepo extends JpaRepository<Order, Integer> {
     List<Order> findByCustomerId(Integer customerId);
+
 }

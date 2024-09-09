@@ -29,12 +29,11 @@ public class OrderController {
         return ResponseEntity.ok(orders);
     }
 
-    @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
-        Order savedOrder = orderService.saveOrder(order);
-        return new ResponseEntity<>(savedOrder, HttpStatus.CREATED);
-    }
+    @PostMapping("/{customerId}")
+    public Order addOrder(@PathVariable Integer customerId) {
+        return orderService.addNewOrder(customerId);
 
+    }
     @PutMapping("/{id}")
     public ResponseEntity<Order> updateOrder(@PathVariable Integer id, @RequestBody Order order) {
         if (orderService.getOrderById(id).isPresent()) {
