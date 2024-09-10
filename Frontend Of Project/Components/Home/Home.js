@@ -8,6 +8,7 @@ function Home() {
         <div className="mainContainer">
             <div className="contentContainer">
                 <h1 className="titleStyle">Ürünler</h1>
+                
                 {/* <div className="header-container">
                 <input
                     type="text"

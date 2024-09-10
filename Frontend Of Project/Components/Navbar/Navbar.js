@@ -62,81 +62,83 @@ function Navbar() {
     return (
         <div className="navbar">
             <ul className="navbar-list">
-                
-                {!isAdmin && (<li className="navbar-item"><Link className="navbar-link" to="/">Anasayfa</Link></li>)}
-                
-
-                {isAdmin && (
-                    <li className="navbar-item"><Link className="navbar-link" to="/customers">Müşteriler</Link></li>
-
+                {!isAdmin && (
+                    <li className="navbar-item">
+                        <Link className="navbar-link" to="/">Anasayfa</Link>
+                    </li>
                 )}
                 {isAdmin && (
-
-                    <li className="navbar-item"><Link className="navbar-link" to="/product_admin">Ürünler</Link></li>
+                    <>
+                        <li className="navbar-item">
+                            <Link className="navbar-link" to="/customers">Müşteriler</Link>
+                        </li>
+                        <li className="navbar-item">
+                            <Link className="navbar-link" to="/product_admin">Ürünler</Link>
+                        </li>
+                    </>
                 )}
-                {!isAdmin && (<li className="navbar-item dropdown">
-                    <span className="navbar-link">Kategoriler</span>
-                    <ul className="dropdown-menu">
-                        {categories.length > 0 ? (
-                            categories.map((category) => (
-                                <li key={category.id} className="dropdown-item">
-                                    <Link className="dropdown-link" to={`/category/${category.id}`}>
-                                        {category.name}
-                                    </Link>
-                                </li>
-                            ))
-                        ) : (
-                            <li className="dropdown-item">No Categories Available</li>
-                        )}
-                    </ul>
-                </li>)}
-               
-                {isLoggedIn && (
-                    <li className="navbar-item dropdown" style={{ marginLeft: 680 , position:'relative'}}>
-                        <span className="navbar-link">Profil</span>
+                {!isAdmin && (
+                    <li className="navbar-item dropdown">
+                        <span className="navbar-link">Kategoriler</span>
                         <ul className="dropdown-menu">
-                            <li className="dropdown-item">
-                                <Link className="dropdown-link" to={`/customer-profile`}>
-                                    Hesabım
-                                </Link>
-                            </li>
+                            {categories.length > 0 ? (
+                                categories.map((category) => (
+                                    <li key={category.id} className="dropdown-item">
+                                        <Link className="dropdown-link" to={`/category/${category.id}`}>
+                                            {category.name}
+                                        </Link>
+                                    </li>
+                                ))
+                            ) : (
+                                <li className="dropdown-item">No Categories Available</li>
+                            )}
                         </ul>
                     </li>
                 )}
-
-                {isLoggedIn ? (
-                    <li className="navbar-item" style={{ marginLeft: 'auto' }}>
-                        <span className="navbar-link" onClick={logout}>Çıkış</span>
+                <div className="navbar-item-container" style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
+                    {isLoggedIn && (
+                        <li className="navbar-item dropdown">
+                            <span className="navbar-link">Profil</span>
+                            <ul className="dropdown-menu">
+                                <li className="dropdown-item">
+                                    <Link className="dropdown-link" to={`/customer-profile`}>
+                                        Hesabım
+                                    </Link>
+                                </li>
+                            </ul>
+                        </li>
+                    )}
+                    {isLoggedIn ? (
+                        <li className="navbar-item">
+                            <span className="navbar-link" onClick={logout}>Çıkış</span>
+                        </li>
+                    ) : (
+                        <li className="navbar-item">
+                            <span className="navbar-link" onClick={openModal}>Giriş</span>
+                        </li>
+                        
+                    )}
+                    {isLoggedIn && !isAdmin &&(
+                        <li className="navbar-item">
+                        <Link className="custom-icon-button-basket" to="/basket">
+                            <Basket size={25} />
+                        </Link>
                     </li>
-
-
-
-                ) : (
-                    <li className="navbar-item" style={{ marginLeft: 'auto' }}>
-                        <span className="navbar-link" onClick={openModal}>Giriş</span>
-                    </li>
-                )}
-
-                {!isAdmin && (<li className="navbar-item" style={{ marginLeft: '10px' }}>
-                    <Link className="custom-icon-button-basket" to="/basket">
-
-                        <Basket size={25} />
-                    </Link>
-                </li>)}
+                    )}                  
+                </div>
             </ul>
-
+    
             {isModalOpen && (
                 <div className="modal-overlay" onClick={closeModal}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <h1>Giriş</h1>
-                        <Login closeModal={closeModal} onLoginSuccess={() => {
-                            checkAuthStatus();
-                        }} />
+                        <Login closeModal={closeModal} onLoginSuccess={() => checkAuthStatus()} />
                     </div>
                 </div>
             )}
         </div>
     );
+    
 }
 
 export default Navbar;

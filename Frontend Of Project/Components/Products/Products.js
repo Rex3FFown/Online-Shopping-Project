@@ -1,55 +1,29 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './Product2.css';
-
-
 
 const API_URL = 'http://localhost:8080/api/baskets';
 
-
 const addToBasket = async (productId) => {
+  const basketId = localStorage.getItem('basketId');
   try {
-    const customerId = localStorage.getItem("userId");
-    if (!customerId) {
-      throw new Error('Customer ID is missing.');
-    }
-
-    const res = await fetch(`${API_URL}/customer/${customerId}`, {
-      method: "GET",
-      headers: { 
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("token")}`
-      },
-      mode:"no-cors",
-      credentials: 'include'
-    });
-
-    if (!res.ok) {
-      throw new Error('Error fetching the basket');
-    }
-
-    const basket = await res.json(); 
-
-    const basketItemRes = await fetch(`${API_URL}/${basket.id}/items`, {
+    const response = await fetch(`http://localhost:8080/api/basketitems/addItem/${productId}/${basketId}`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("token")}`
-      },
-      body: JSON.stringify({ productId, quantity: 1 }),
-      credentials: 'include'
+        "Authorization": localStorage.getItem("token")
+      }
     });
-
-    if (!basketItemRes.ok) {
-      throw new Error('Error adding item to basket');
+    if (!response.ok) {
+      throw new Error("Ürün sepete eklenirken hata oluştu");
     }
-
-    alert('Product added to basket');
+    const data = await response.json();
+    console.log("Sepete eklenen ürün:", data);
   } catch (error) {
-    console.error(error);
-    alert(error.message);
+    console.error("Sepete ekleme hatası:", error);
   }
 };
-
 
 const Products = () => {
   const [error, setError] = useState(null);
@@ -57,7 +31,6 @@ const Products = () => {
   const [productList, setProductList] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredProductList, setFilteredProductList] = useState([]);
-  const [sortOrder, setSortOrder] =useState('none');
 
   useEffect(() => {
     getAllProducts();
@@ -75,7 +48,6 @@ const Products = () => {
       }
       const result = await res.json();
       const shuffledProducts = result.sort(() => Math.random() - 0.5);
-
       setIsLoaded(true);
       setProductList(shuffledProducts);
     } catch (error) {
@@ -101,22 +73,6 @@ const Products = () => {
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
-  const sortProducts = (products, order) => {
-    if (order === 'none') {
-        return products; // No sorting applied
-    }
-    return [...products].sort((a, b) => {
-        if (order === 'asc') {
-            return a.price - b.price;
-        } else {
-            return b.price - a.price;
-        }
-    });
-};
-
-const handleSortChange = (event) => {
-    setSortOrder(event.target.value);
-};
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -124,7 +80,7 @@ const handleSortChange = (event) => {
     return <div>Loading...</div>;
   } else {
     return (
-      <div className="product-grid" id="special-page">         
+      <div className="product-grid" id="special-page">
         <div className="header-container">
           <input
             type="text"
@@ -134,12 +90,13 @@ const handleSortChange = (event) => {
             className="search__input"
           />
         </div>
-        
 
         {filteredProductList.map((product) => (
           <div className="product-card" key={product.id}>
-            <img src={product.imageUrl} alt={product.name} />
-            <h3>{product.name}</h3>
+            <Link to={`/product/${product.id}`}>
+              <img src={product.imageUrl} alt={product.name} />
+              <h3>{product.name}</h3>
+            </Link>
             <p>{product.description}</p>
             <p className="price">{product.price} ₺</p>
             <p>

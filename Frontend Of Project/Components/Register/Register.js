@@ -29,19 +29,19 @@ function Register({ onClose }) {
 
             if (response.ok) {
                 setSuccessMessage("Kullanıcı başarıyla kaydedildi.");
-                setErrorMessage(''); // Clear any previous error messages
+                setErrorMessage(''); 
                 setTimeout(() => {
-                    onClose(); // Close the modal after successful registration
-                }, 2000); // Delay to allow user to see the success message
+                    onClose();
+                }, 2000); 
             } else {
                 const errorData = await response.json();
                 setErrorMessage(errorData.message || "Kayıt başarısız! Lütfen tekrar deneyin.");
-                setSuccessMessage(''); // Clear any previous success messages
+                setSuccessMessage(''); 
             }
         } catch (error) {
             console.error("Eklenemedi", error);
             setErrorMessage("Bir hata oluştu! Lütfen tekrar deneyin.");
-            setSuccessMessage(''); // Clear any previous success messages
+            setSuccessMessage(''); 
         }
     };
 

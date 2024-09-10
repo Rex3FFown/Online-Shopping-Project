@@ -8,7 +8,7 @@ const ProtectedRoute=({ children,requiredRole  }) => {
         return children;
     }
 
-    // Admin değilse, başka bir sayfaya yönlendir
+  
     return <Navigate to="/login" />;
 };
 

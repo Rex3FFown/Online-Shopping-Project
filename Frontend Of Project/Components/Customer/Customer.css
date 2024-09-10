@@ -1,203 +1,162 @@
 .table-container {
     width: 70%;
     margin: 20px auto;
-    padding: 15px;  
-    padding-top:0.4px;
-    border: 1px solid #f0f0f0;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(31, 1, 255, 0.192);
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Yeni eklenen CSS kodları */
 .header-container {
     display: flex;
-    justify-content: space-between; /* Arama kutusu ve buton arasındaki boşluğu eşit şekilde dağıtır */
-    align-items: center; /* Dikey olarak ortalar */
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
 }
 
 .search-input {
-    padding: 8px;
+    padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 250px; /* İsteğe bağlı olarak genişlik ayarı yapabilirsiniz */
+    border-radius: 6px;
+    width: 250px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
-
-/* PostTable.css */
 
 .post-table {
     width: 100%;
     border-collapse: collapse;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .post-table th,
 .post-table td {
-    border: 2px solid #ddd;
-    padding: 6px;
+    border: 1px solid #e0e0e0;
+    padding: 12px;
     text-align: left;
 }
 
 .post-table th {
-    background-color: #f4f4f4;
-    color: #333;
-    
+    background-color: #f8f9fa;
+    color: #495057;
+    font-weight: 600;
 }
 
 .post-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-
-   
-}
-
-.post-table tr:not(:hover) {
-    backdrop-filter: blur(10px);
+    background-color: #f1f3f5;
 }
 
 .post-table tr:hover {
-    background-color: #5e67c81e;
-    box-shadow: 0 0 10px rgba(31, 1, 255, 0.192);
-    /*transform: scale(1.05);*/
-    
-
+    background-color: #e9ecef;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
 
-/* Genel modal stili */
 .modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Gölgeli arka plan */
-    backdrop-filter: blur(3px) saturate(0); /* Arka planı blur yapar */
-    
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000; /* Modalın üstte görünmesini sağlar */
+    z-index: 1000;
 }
 
-/* Modal içeriği */
 .modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    position: relative;
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
     width: 90%;
-    max-width: 350px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Hafif gölge */
+    max-width: 400px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    position: relative;
 }
 
-/* Modal kapatma butonu */
 .close-modal {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 12px;
+    right: 12px;
     background: none;
     border: none;
     cursor: pointer;
-    color: rgba(255, 0, 0, 0.523);
-    font-size: 24px;
+    color: #dc3545;
+    font-size: 28px;
 }
 
-/* Modal başlığı */
 .modal-content h2 {
     margin-top: 0;
+    font-size: 20px;
+    color: #343a40;
 }
 
-/* Form elemanları */
 form {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Alanlar arasındaki boşluk */
+    gap: 12px;
 }
 
-/* Form etiketleri ve giriş alanları */
 label {
     display: flex;
     flex-direction: column;
-    font-weight: bold;
+    font-weight: 600;
+    color: #495057;
 }
 
 input {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-/* Form ayrıcı */
-hr {
-    margin: 10px 0;
-    border: 1px solid #ddd;
-}
-
-/* Form butonu */
-.submit-button {
-    margin-top: 10px;
     padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+hr {
+    margin: 12px 0;
+    border: 0;
+    border-top: 1px solid #e0e0e0;
+}
+
+.submit-button {
+    margin-top: 12px;
+    padding: 12px;
     cursor: pointer;
     background-color: #28a745;
-    color: white;
+    color: #ffffff;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-/* Yeni kullanıcı ekleme butonu */
+.submit-button:hover {
+    background-color: #218838;
+}
+
 .add-user-button {
     margin: 20px 0;
-    padding: 6px;
+    padding: 8px 16px;
     cursor: pointer;
     background-color: #007bff;
-    color: rgba(255, 255, 255, 0.803);
+    color: #ffffff;
     border: none;
-    border-radius: 4px;
-    box-shadow: 0 3px #999;
-}
-
-.add-user-button::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300%;
-    height: 300%;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 1;
-    transition: transform 0.6s ease, opacity 0.6s ease;
-    pointer-events: none;
-}
-
-.add-user-button:active::before {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0;
-    /* transform: translateY(4px);*/
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .add-user-button:hover {
-    background-color: #007bffdf;
-    border-radius: 4px;
-}
-
-/* Form butonu */
-.submit-button {
-    margin-top: 10px;
-    padding: 10px;
-    cursor: pointer;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 4px;
+    background-color: #0056b3;
 }
 
 .addUserButtonContainer {
     display: flex;
     align-items: center;
-    font-size: medium;
+    font-size: 16px;
 }
 
 .addUserButtonContainer span {
@@ -209,59 +168,54 @@ hr {
 }
 
 .custom-icon-button {
-    background-color: #3697ff22;
-    color: #3697ff;
-    width: 30px;
-    height: 30px;
+    background-color: #007bff;
+    color: #ffffff;
+    width: 36px;
+    height: 36px;
     border: none;
-    border-radius: 100px;
+    border-radius: 50%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .custom-icon-button:hover {
-    background-color: #3697ffc0;
-    color: #fafafa;
+    background-color: #0056b3;
 }
 
-/* Siparişler butonu için stil */
 .orders-button {
-    background-color: #3697ff22;
-    color: #3697ff;
-    width: 30px;
-    height: 30px;
+    background-color: #007bff;
+    color: #ffffff;
+    width: 36px;
+    height: 36px;
     border: none;
-    border-radius: 100px;
+    border-radius: 50%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .orders-button:hover {
-    background-color: #3697ffc0;
-    color: #fafafa;
+    background-color: #0056b3;
 }
 
 .product-image {
-    width: 30%; 
-    height: 10%; /* Sabit yükseklik biraz artırıldı */
-    object-fit: cover;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 15px;
-    transition: transform 0.3s ease;
-}
-
-/* .product-image:hover { */
-    /* transform: scale(1.1); Görseli %10 büyütme */
-/* } */
-
-.product-image:active{
-    transform: scale(1.5);
     width: 100%;
-    height: 100%;
-    
+    height: auto;
+    object-fit: cover;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.product-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.product-image:active {
+    transform: scale(1.1);
+}

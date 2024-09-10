@@ -112,7 +112,7 @@ function Products() {
     const openUpdateModal = (product) => {
         setModalMode("update");
         setSelectedProductId(product.id);
-        setProductForm({ name: product.name, description: product.description, price: product.price,category_id: product.category, imageUrl: product.imageUrl});
+        setProductForm({ name: product.name, description: product.description, price: product.price,category_id: product.category.id, imageUrl: product.imageUrl});
     };
 
     const closeModal = () => {
@@ -148,7 +148,7 @@ function Products() {
                             <th>Ürün Adı</th>
                             <th>Açıklama</th>
                             <th>Fiyat</th>
-                     
+                     <th>Kategori</th>
                             <th>Resim</th>
                             <th>İşlemler</th>
                            
@@ -157,10 +157,12 @@ function Products() {
                     <tbody>
                         {filteredProductList.map((product) => (
                             <tr key={product.id}>
+                               
                                 <td>{product.name}</td>
-                                <td>{product.description}</td>
+                                <td width="180px">{product.description}</td>
                               
                                 <td>{product.price} ₺</td>
+                                <td >{product.category.name}</td>
                                 <td>
                                     <img src={product.imageUrl} alt={product.name} style={{ width: "100px", height: "auto"}} />
                                 </td>
@@ -179,6 +181,7 @@ function Products() {
                 
                 {modalMode && (
                     <div className="modal">
+                        {console.log(productList)}
                         <div className="modal-content">
                             <button onClick={closeModal} className="close-modal">
                                 <XCircle size={24} />

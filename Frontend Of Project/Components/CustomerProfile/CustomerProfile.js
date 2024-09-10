@@ -50,11 +50,11 @@ function CustomerProfile() {
 
     return (
         <div className="profile-container">
-            <h1>Profil</h1>
-            <p className="username">Ad Soyad: {profile.username} {profile.surname}</p>
+            <h1>{profile.username} {profile.surname}</h1>
+            
             <p className="email">Email: {profile.email}</p>
             <p className="email">Adres: {profile.adres}</p>
-            {console.log(profile.email)}
+        <br></br>
             <ul>
                 {customerOrder[profile.id]?.length ? (
                     customerOrder[profile.id].map((order) => (
