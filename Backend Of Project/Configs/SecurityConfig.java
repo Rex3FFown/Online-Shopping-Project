@@ -82,6 +82,7 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.POST, "/api/baskets/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api/baskets/**").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/customers/register").permitAll()
+                                .requestMatchers(HttpMethod.GET,"/products/product/{id}").permitAll()
                                 .anyRequest().authenticated()
                 );
 
