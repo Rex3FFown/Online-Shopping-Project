@@ -11,6 +11,7 @@ import CategoryProducts from './components/CategoryProducts/CategoryProducts.js'
 import CustomerProfile from './components/CustomerProfile/CustomerProfile.js';
 import AdminRoute from './components/Admin/AdminRoute.js';
 import Register from './components/Register/Register.js';
+import ProductPage from './components/Products/ProductPage.js';
 
 
 
@@ -29,9 +30,10 @@ function App() {
           <Route path="/category/:id" element={<CategoryProducts />} />
           <Route path="/customer-profile" element={<CustomerProfile />} />
           <Route path="/basket" element={<Basket />} />
-          <Route path ="/product_admin" element={<ProductAdmin /> }/>
-          <Route path="/register" element = {<Register />} />
-          
+          <Route path="/product_admin" element={<ProductAdmin />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/product/:id" element={<ProductPage />} />
+
         </Routes>
       </BrowserRouter>
     </div>
